@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		9FEF07041F8961580014D0DD /* KVVlive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FEF07021F8961580014D0DD /* KVVlive.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9FEF070B1F8962480014D0DD /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF070A1F8962480014D0DD /* Stop.swift */; };
+		9FEF070D1F8962C70014D0DD /* StopWithDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF070C1F8962C70014D0DD /* StopWithDistance.swift */; };
+		9FEF070F1F8962FF0014D0DD /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF070E1F8962FF0014D0DD /* Departure.swift */; };
+		9FEF07111F8965570014D0DD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF07101F8965570014D0DD /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9FEF06FF1F8961580014D0DD /* KVVlive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KVVlive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEF07021F8961580014D0DD /* KVVlive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVVlive.h; sourceTree = "<group>"; };
 		9FEF07031F8961580014D0DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FEF070A1F8962480014D0DD /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		9FEF070C1F8962C70014D0DD /* StopWithDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWithDistance.swift; sourceTree = "<group>"; };
+		9FEF070E1F8962FF0014D0DD /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
+		9FEF07101F8965570014D0DD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,10 @@
 			children = (
 				9FEF07021F8961580014D0DD /* KVVlive.h */,
 				9FEF07031F8961580014D0DD /* Info.plist */,
+				9FEF070A1F8962480014D0DD /* Stop.swift */,
+				9FEF070C1F8962C70014D0DD /* StopWithDistance.swift */,
+				9FEF070E1F8962FF0014D0DD /* Departure.swift */,
+				9FEF07101F8965570014D0DD /* Request.swift */,
 			);
 			path = KVVlive;
 			sourceTree = "<group>";
@@ -95,6 +107,7 @@
 				TargetAttributes = {
 					9FEF06FE1F8961580014D0DD = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FEF070F1F8962FF0014D0DD /* Departure.swift in Sources */,
+				9FEF07111F8965570014D0DD /* Request.swift in Sources */,
+				9FEF070D1F8962C70014D0DD /* StopWithDistance.swift in Sources */,
+				9FEF070B1F8962480014D0DD /* Stop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +270,7 @@
 		9FEF07081F8961580014D0DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -266,6 +284,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.medvjed.KVVlive;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -274,6 +293,7 @@
 		9FEF07091F8961580014D0DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
