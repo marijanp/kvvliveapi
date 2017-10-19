@@ -9,12 +9,12 @@
 import Foundation
 
 /**
- Represents a Stop.
- - Author: Marijan Petricevic
- - parameters:
+ Represents a stop.
+ - Public API:
      - route
      - name
      - coordinates as tuple (lat: Double, lon: Double)
+ - Author: Marijan Petricevic
  */
 public class Stop : CustomStringConvertible {
     
@@ -48,9 +48,13 @@ public class Stop : CustomStringConvertible {
         self.coordinates.lon = lon
     }
     /**
-     Serializes JSON-Data to a optional array of stops
+     Serializes JSON-Data to a optional array of stops.
+     - Author: Marijan Petricevic
+     - parameters:
+         - data: JSON-Formated data.
+     - returns: A optional array of stops. The array will be nil, if the serialization fails.
      */
-    static func serialize(data: Data) -> [Stop]? {
+    static func serialize(_ data: Data) -> [Stop]? {
         var res: [Stop] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],

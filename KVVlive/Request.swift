@@ -17,7 +17,7 @@ enum SerializationError : Error{
     case missing(String)
 }
 
-//TODO public vart newer: Request?
+//TODO public var newer: Request?
 public class Request : NSObject {
     /**
      API key which is neccessary for requests. Gets appended as a [key, value] pair everytime a JSON request is made.
@@ -33,22 +33,16 @@ public class Request : NSObject {
      Returns JSON Data recieved from a URL. The URL
      - Author: Marijan Petricevic
      - returns: JSON Data, which was fetched from the server.
-     JSON-Data
-     - throws:
-     TODO implement error
-             solution for memory cycle
      - parameters:
          - url: The URL which should be requested
      */
     
-    private func getJsonData() -> Data {
+    private func getJsonData() -> Data? {
         searchURL.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
         let request = URLRequest(url: searchURL.url!)
         let semaphore = DispatchSemaphore(value: 0)
-        var recievedData: Data = Data()
+        var recievedData: Data? = Data()
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            //improve from here
-            
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
             
@@ -61,8 +55,7 @@ public class Request : NSObject {
                 print(err)
                 return
             }
-            //until here
-            recievedData = data!
+            recievedData = data
             semaphore.signal()
         })
         task.resume()
@@ -75,62 +68,70 @@ public class Request : NSObject {
      - Author: Marijan Petricevic
      - parameters:
          - name: String with the name to search for.
-         - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
-     - returns: Array of Stops
+         - maxInfos: Maximal number of stops which should be returned. It's 10 by default.
+         - handler: Gets called when the stops got fetched. The caller can implement further processing of the stops by passing a closure.
      */
-    public func searchStop(by name: String, maxInfos: Int = 10,_ handler: (([Stop]) -> Void)) {
+    public func searchStop(by name: String, maxInfos: Int = 10,_ completion: (([Stop]) -> Void)) {
         searchURL.path = "/webapp/stops/byname/" + name
         searchURL.queryItems = [URLQueryItem(name: "maxInfos", value: String(maxInfos))]
-        if let stops = Stop.serialize(data: getJsonData()) {
-            handler(stops)
+        if let data = getJsonData() {
+            if let stops = Stop.serialize(data) {
+                completion(stops)
+            }
         }
     }
     
     /**
-     Search for a stop by latitude and longitude
+     Search for a stop by latitude and longitude.
      - parameters:
-         - coordinates: Tuple of two Doubles with latitude and longitude.
-         - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
-         - returns: Array of Stops
+         - coordinates: Tuple with latitude and longitude as double-values.
+         - maxInfos: Maximal number of stops which should be returned. It's 10 by default.
+         - handler: Gets called when the stops got fetched. The caller can implement further processing of the stops by passing closure.
      - Author: Marijan Petricevic
      */
-    public func searchStop(by coordinates: (lat: Double, lon: Double), maxInfos: Int = 10, _ handler: (([StopWithDistance]) -> Void)) {
+    public func searchStop(by coordinates: (lat: Double, lon: Double), maxInfos: Int = 10, _ completion: (([StopWithDistance]) -> Void)) {
         searchURL.path = "/webapp/stops/bylatlon/" + String(coordinates.lat) + "/" + String(coordinates.lon)
         searchURL.queryItems = [URLQueryItem(name: "maxInfos", value: String(maxInfos))]
-        if let stops: [StopWithDistance] = StopWithDistance.serialize(data: getJsonData()) {
-            handler(stops)
+        if let data = getJsonData() {
+            if let stops: [StopWithDistance] = StopWithDistance.serialize(data) {
+                completion(stops)
+            }
         }
     }
     /**
-     Get Departures from a Stop by the wanted route
+     Get Departures from a Stop by the wanted route.
      - parameters:
-     - route: String of wanted route e.g. "S11"
-     - stopId: String with ID of the wanted Stop (you can get this ID by using a search for stop function)
-     - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
-     - returns: Array of Departures
+         - route: String of wanted route e.g. "S11"
+         - stopId: String with ID of the wanted stop (you can get this ID by using a search for stop function)
+         - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
+         - handler: Gets called when the departures got fetched. The caller can implement further processing of the departures by passing a closure.
      - Author: Marijan Petricevic
      */
-    public func getDepartures(route: String, stopId: String, maxInfos: Int = 10, _ handler: (([Departure]) -> Void)) {
+    public func getDepartures(route: String, stopId: String, maxInfos: Int = 10, _ completion: (([Departure]) -> Void)) {
         searchURL.path = "/webapp/departures/byroute/" + route + "/" + stopId
         searchURL.queryItems = [URLQueryItem(name: "maxInfos", value: String(maxInfos))]
-        if let departures = Departure.serialize(data: getJsonData()) {
-            handler(departures)
+        if let data = getJsonData() {
+            if let departures = Departure.serialize(data) {
+                completion(departures)
+            }
         }
     }
     
     /**
-     Get Departures from a Stop
+     Get Departures from a Stop.
      - parameters:
-     - stopId: String with ID of the wanted Stop (you can get this ID by using a search for stop function)
-     - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
-     - returns: Array of Departures
+         - stopId: String with ID of the wanted stop (you can get this ID by using a search for stop function)
+         - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
+         - handler: Gets called when the departures got fetched. The caller can implement further processing of the departures by passing a closure.
      - Author: Marijan Petricevic
      */
-    public func getDepartures(stopId: String, maxInfos: Int = 10, _ handler: (([Departure]) -> Void)){
+    public func getDepartures(stopId: String, maxInfos: Int = 10, _ completion: (([Departure]) -> Void)){
         searchURL.path = "/webapp/departures/bystop/" + stopId
         searchURL.queryItems = [URLQueryItem(name: "maxInfos", value: String(maxInfos))]
-        if let departures = Departure.serialize(data: getJsonData()) {
-            handler(departures)
+        if let data = getJsonData() {
+            if let departures = Departure.serialize(data) {
+                completion(departures)
+            }
         }
     }
     

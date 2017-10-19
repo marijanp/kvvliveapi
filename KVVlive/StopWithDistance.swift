@@ -9,11 +9,9 @@
 import Foundation
 
 /**
- Subclass of Stop, has an additional variable distance
+ Subclass of stop, which has an additional variable distance.
  - Author:
  Marijan Petricevic
- - Attributes:
- - distance in meters
  */
 
 public class StopWithDistance: Stop {
@@ -34,7 +32,15 @@ public class StopWithDistance: Stop {
         try super.init(from: json)
     }
     
-    static func serialize(data: Data) -> [StopWithDistance]? {
+    /**
+     Serializes JSON-Data to a optional array of stops with a distance.
+     - Author: Marijan Petricevic
+     - parameters:
+         - data: JSON-Formated data.
+     - returns: A optional array of stops with a distance. The array will be nil, if the serialization fails.
+     */
+    
+    static func serialize(_ data: Data) -> [StopWithDistance]? {
         var res: [StopWithDistance] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],

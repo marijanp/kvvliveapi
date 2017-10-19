@@ -33,7 +33,6 @@ public struct Departure : CustomStringConvertible {
     public let route: String
     public let destination: String
     public let direction: Int
-    //TODO: add computed value datetime
     public let time: String
     public let lowfloor: Bool
     public let realtime: Bool
@@ -74,8 +73,15 @@ public struct Departure : CustomStringConvertible {
         self.traction = traction
         self.stopPosition = Int(stopPosition)!
     }
-    //serializes data
-    static func serialize(data: Data) -> [Departure]? {
+    
+    /**
+     Serializes JSON-Data to a optional array of departures.
+     - Author: Marijan Petricevic
+     - parameters:
+         - data: JSON-Formated data.
+     - returns: A optional array of departures. The array will be nil, if the serialization fails.
+     */
+    static func serialize(_ data: Data) -> [Departure]? {
         var res: [Departure] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
