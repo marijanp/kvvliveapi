@@ -28,6 +28,12 @@ public class Stop : CustomStringConvertible {
     public let name: String
     public let coordinates: (lat: Double, lon: Double)
     
+    public init(id: String, name: String, latitude: Double, longitude: Double) {
+        self.id = id
+        self.name = name
+        self.coordinates = (latitude, longitude)
+    }
+    
     init(from json: [String: Any]) throws {
         guard let id = json["id"] as? String else {
             throw SerializationError.missing("id")
