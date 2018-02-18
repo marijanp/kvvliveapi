@@ -10,7 +10,6 @@ import Foundation
 
 /**
  Represents a departure of a public transportation.
- - Author: Marijan Petricevic
  - parameters:
      - route of the public transportation.
      - destination
@@ -76,7 +75,6 @@ public struct Departure : CustomStringConvertible {
     
     /**
      Serializes JSON-Data to a optional array of departures.
-     - Author: Marijan Petricevic
      - parameters:
          - data: JSON-Formated data.
      - returns: A optional array of departures. The array will be nil, if the serialization fails.

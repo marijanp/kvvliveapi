@@ -10,8 +10,6 @@ import Foundation
 
 /**
  Subclass of stop, which has an additional variable distance.
- - Author:
- Marijan Petricevic
  */
 
 public class StopWithDistance: Stop {
@@ -34,7 +32,6 @@ public class StopWithDistance: Stop {
     
     /**
      Serializes JSON-Data to a optional array of stops with a distance.
-     - Author: Marijan Petricevic
      - parameters:
          - data: JSON-Formated data.
      - returns: A optional array of stops with a distance. The array will be nil, if the serialization fails.

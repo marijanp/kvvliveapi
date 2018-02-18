@@ -31,7 +31,7 @@ public class Request : NSObject {
     
     /**
      Returns JSON Data recieved from a URL. The URL
-     - Author: Marijan Petricevic
+     
      - returns: JSON Data, which was fetched from the server.
      - parameters:
          - url: The URL which should be requested
@@ -65,7 +65,7 @@ public class Request : NSObject {
     
     /**
      Search for a stop by name.
-     - Author: Marijan Petricevic
+     
      - parameters:
          - name: String with the name to search for.
          - maxInfos: Maximal number of stops which should be returned. It's 10 by default.
@@ -87,7 +87,6 @@ public class Request : NSObject {
          - coordinates: Tuple with latitude and longitude as double-values.
          - maxInfos: Maximal number of stops which should be returned. It's 10 by default.
          - handler: Gets called when the stops got fetched. The caller can implement further processing of the stops by passing closure.
-     - Author: Marijan Petricevic
      */
     public func searchStop(by coordinates: (lat: Double, lon: Double), maxInfos: Int = 10, _ completion: (([StopWithDistance]) -> Void)) {
         searchURL.path = "/webapp/stops/bylatlon/" + String(coordinates.lat) + "/" + String(coordinates.lon)
@@ -105,7 +104,6 @@ public class Request : NSObject {
          - stopId: String with ID of the wanted stop (you can get this ID by using a search for stop function)
          - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
          - handler: Gets called when the departures got fetched. The caller can implement further processing of the departures by passing a closure.
-     - Author: Marijan Petricevic
      */
     public func getDepartures(route: String, stopId: String, maxInfos: Int = 10, _ completion: (([Departure]) -> Void)) {
         searchURL.path = "/webapp/departures/byroute/" + route + "/" + stopId
@@ -123,7 +121,6 @@ public class Request : NSObject {
          - stopId: String with ID of the wanted stop (you can get this ID by using a search for stop function)
          - maxInfos: Maximal number of departures which should be returned. It's 10 by default.
          - handler: Gets called when the departures got fetched. The caller can implement further processing of the departures by passing a closure.
-     - Author: Marijan Petricevic
      */
     public func getDepartures(stopId: String, maxInfos: Int = 10, _ completion: (([Departure]) -> Void)){
         searchURL.path = "/webapp/departures/bystop/" + stopId

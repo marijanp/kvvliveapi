@@ -14,7 +14,6 @@ import Foundation
      - route
      - name
      - coordinates as tuple (lat: Double, lon: Double)
- - Author: Marijan Petricevic
  */
 public class Stop : CustomStringConvertible {
     
@@ -55,7 +54,6 @@ public class Stop : CustomStringConvertible {
     }
     /**
      Serializes JSON-Data to a optional array of stops.
-     - Author: Marijan Petricevic
      - parameters:
          - data: JSON-Formated data.
      - returns: A optional array of stops. The array will be nil, if the serialization fails.
