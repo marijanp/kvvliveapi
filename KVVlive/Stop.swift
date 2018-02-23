@@ -2,8 +2,7 @@
 //  Stop.swift
 //  KVVlive
 //
-//  Created by Marijan Petricevic on 07.10.17.
-//  Copyright © 2017 Marijan Petricevic. All rights reserved.
+//  Created by Marijan (mdvjd) on 07.10.17.
 //
 
 import Foundation
@@ -58,7 +57,7 @@ public class Stop : CustomStringConvertible {
          - data: JSON-Formated data.
      - returns: A optional array of stops. The array will be nil, if the serialization fails.
      */
-    static func serialize(_ data: Data) -> [Stop]? {
+    static func deserialize(_ data: Data) -> [Stop]? {
         var res: [Stop] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],

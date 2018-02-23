@@ -2,8 +2,7 @@
 //  KVVlive.h
 //  KVVlive
 //
-//  Created by Marijan Petricevic on 07.10.17.
-//  Copyright © 2017 Marijan Petricevic. All rights reserved.
+//  Created by Marijan (mdvjd) on 07.10.17.
 //
 
 #import <UIKit/UIKit.h>

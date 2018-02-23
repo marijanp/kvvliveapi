@@ -2,8 +2,7 @@
 //  StopWithDistance.swift
 //  KVVlive
 //
-//  Created by Marijan Petricevic on 07.10.17.
-//  Copyright © 2017 Marijan Petricevic. All rights reserved.
+//  Created by Marijan (mdvjd) on 07.10.17.
 //
 
 import Foundation
@@ -37,7 +36,7 @@ public class StopWithDistance: Stop {
      - returns: A optional array of stops with a distance. The array will be nil, if the serialization fails.
      */
     
-    static func serialize(_ data: Data) -> [StopWithDistance]? {
+    static func deserialize(_ data: Data) -> [StopWithDistance]? {
         var res: [StopWithDistance] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],

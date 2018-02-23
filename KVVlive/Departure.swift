@@ -2,8 +2,7 @@
 //  Departure.swift
 //  KVVlive
 //
-//  Created by Marijan Petricevic on 07.10.17.
-//  Copyright © 2017 Marijan Petricevic. All rights reserved.
+//  Created by Marijan (mdvjd) on 07.10.17.
 //
 
 import Foundation
@@ -79,7 +78,7 @@ public struct Departure : CustomStringConvertible {
          - data: JSON-Formated data.
      - returns: A optional array of departures. The array will be nil, if the serialization fails.
      */
-    static func serialize(_ data: Data) -> [Departure]? {
+    static func deserialize(_ data: Data) -> [Departure]? {
         var res: [Departure] = []
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
