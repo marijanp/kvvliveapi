@@ -1,7 +1,7 @@
 # kvvliveapi
 Swift Bindings  für die API, die von der KVV Live Webapp benutzt wird.
 
-Dank geht an [Nervengift](https://github.com/Nervengift), durch dessen Projekt [Nervengift](https://github.com/Nervengift/kvvliveapi) dieses entstand.
+Dank geht an [Nervengift](https://github.com/Nervengift), durch dessen [kvvliveapi](https://github.com/Nervengift/kvvliveapi) Projekt dieses entstand.
 
 ## Verwendung
 Um eine Anfrage zu starten muss zunächst ein Request instanziiert werden:
