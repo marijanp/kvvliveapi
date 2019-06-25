@@ -17,14 +17,13 @@ import Foundation
      - realtime
      - lowfloor disability-friendly or not.
      - traction tracting force.
-     - stopPosition
  */
 
 public struct Departure : CustomStringConvertible {
     
     public var description: String {
         get {
-            return "route: \(route) destination: \(destination) direction: \(direction) time: \(time) lowfloor: \(lowfloor) realtime: \(realtime) traction: \(traction) stopPosition: \(stopPosition)"
+            return "route: \(route) destination: \(destination) direction: \(direction) time: \(time) lowfloor: \(lowfloor) realtime: \(realtime) traction: \(traction)"
         }
     }
     
@@ -35,7 +34,6 @@ public struct Departure : CustomStringConvertible {
     public let lowfloor: Bool
     public let realtime: Bool
     public let traction: Int
-    public let stopPosition: Int
     
     init(from json: [String: Any]) throws {
         guard let route = json["route"] as? String else {
@@ -59,9 +57,6 @@ public struct Departure : CustomStringConvertible {
         guard let traction = json["traction"] as? Int else {
             throw SerializationError.missing("traction")
         }
-        guard let stopPosition = json["stopPosition"] as? String else {
-            throw SerializationError.missing("stopPosition")
-        }
         self.route = route
         self.destination = destination
         self.direction = Int(direction)!
@@ -69,7 +64,6 @@ public struct Departure : CustomStringConvertible {
         self.lowfloor = lowfloor
         self.realtime = realtime
         self.traction = traction
-        self.stopPosition = Int(stopPosition)!
     }
     
     /**
