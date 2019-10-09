@@ -109,16 +109,19 @@ public class Request : NSObject {
         let semaphore = DispatchSemaphore(value: 0)
         var recievedData: Data? = Data()
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            if let err = error {
+                print(err)
+                semaphore.signal()
+                return
+            }
+            
+            // If the error is nil, the response won't be
             let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
             
             if statusCode != 200 {
                 print("Error, couldn't fetch data from given URL: " + self.searchURL.url!.absoluteString)
                 semaphore.signal()
-                return
-            }
-            if let err = error {
-                print(err)
                 return
             }
             recievedData = data
